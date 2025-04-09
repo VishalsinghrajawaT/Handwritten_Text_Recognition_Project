@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Handwritten Text Recognition</title>
+    <style>
+        /* General Styling */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+            background: url('/image/background.png') no-repeat center center fixed;
+            background-size: cover;
+            font-family: Arial, sans-serif;
+            color: white;
+        }
+
+        /* Navbar */
+        .navbar {
+            background: rgba(0, 0, 0, 0.7);
+            padding: 15px 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            left: 0;
+            z-index: 100;
+        }
+        .navbar h2 {
+            margin: 0;
+            color: white;
+            font-size: 22px;
+            font-weight: bold;
+        }
+        .navbar nav {
+            display: flex;
+            gap: 20px;
+        }
+        .navbar a {
+            color: white;
+            text-decoration: none;
+            font-weight: bold;
+            padding: 5px 10px;
+            transition: color 0.3s ease-in-out;
+        }
+        .navbar a:hover {
+            color: #a970ff;
+        }
+        .contact-btn {
+            background-color: #a970ff;
+            border: none;
+            padding: 10px 15px;
+            border-radius: 5px;
+            color: white;
+            font-weight: bold;
+            text-decoration: none;
+        }
+        .contact-btn:hover {
+            background-color: #8b5cf6;
+        }
+
+        /* Contact Section - Centered */
+        .contact-section {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-wrap: wrap;
+            padding: 40px;
+            background-color: #1E293B;
+            border-radius: 10px;
+            margin: auto;
+            max-width: 1200px;
+            min-height: 70vh; /* Ensures it stays in the middle */
+            flex-grow: 1; /* Pushes the footer down */
+        }
+
+        .contact-box {
+            background: #F1F5F9;
+            padding: 20px;
+            border-radius: 10px;
+            text-align: center;
+            width: 320px;
+            margin: 10px;
+        }
+        .contact-box img {
+            width: 100%;
+            max-height: 250px;
+            object-fit: contain;
+            border-radius: 10px;
+        }
+        .contact-box h3 {
+            color: #1E293B;
+            font-size: 20px;
+            margin-top: 10px;
+        }
+        .contact-box p {
+            color: #64748B;
+            font-size: 18px;
+        }
+
+        /* Contact Form - Centered */
+        .contact-form {
+            background: #334155;
+            padding: 20px;
+            border-radius: 10px;
+            color: white;
+            width: 350px;
+            text-align: center;
+            margin: 10px;
+        }
+        .contact-form h2 {
+            font-size: 24px;
+            margin-bottom: 10px;
+        }
+        .contact-form input, .contact-form textarea {
+            width: 100%;
+            padding: 10px;
+            margin: 10px 0;
+            border-radius: 5px;
+            border: none;
+            outline: none;
+        }
+        .contact-form button {
+            background: #a970ff;
+            color: white;
+            padding: 10px;
+            width: 100%;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-weight: bold;
+        }
+        .contact-form button:hover {
+            background: #8b5cf6;
+        }
+
+        /* Sticky Footer */
+        .footer {
+            background-color: #111827;
+            text-align: center;
+            padding: 10px 0;
+            width: 100%;
+            font-size: 14px;
+            margin-top: auto; /* Ensures it stays at the bottom */
+        }
+    </style>
+</head>
+<body>
+    <!-- Navbar -->
+    <header class="navbar">
+        <h2>Handwritten Text Recognition</h2>
+        <nav>
+            <a href="/templates/Home.html">Home</a>
+            <a href="/templates/Task.html">Task</a>
+            <a href="#">Resume</a>
+            <a href="/templates/about.html">About</a>
+        </nav>
+        <a href="/templates/Contact.html" class="contact-btn">Contact Me</a>
+    </header>
+
+    <!-- Contact Section -->
+    <section class="contact-section">
+        <div class="contact-box">
+            <img src="/image/PhoneNoContect.jpg" alt="Phone Icon">
+            <h3>PHONE NUMBER</h3>
+            <p>+919636575691</p>
+        </div>
+        <div class="contact-box">
+            <img src="/image/EmailContect.png" alt="Email Icon">
+            <h3>EMAIL</h3>
+            <p>avrajawat2002@gmail.com</p>
+        </div>
+        <div class="contact-form">
+            <h2>Contact Us</h2>
+            <script src="https://sheetdb.io/s/f/0ypjytjrl0990.js"></script>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <p>Handwritten Text Extractor &copy; 2025 | Developed with Flask & EasyOCR</p>
+    </footer>
+</body>
+</html>

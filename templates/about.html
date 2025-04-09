@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About Us</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/css/bootstrap.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/js/all.min.js"></script>
+    <style>
+        body {
+            color: rgb(247, 244, 244);
+            background: url('/image/background.png') no-repeat center center/cover;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+        }
+        .container {
+            max-width: 800px;
+            background: #1e1e1e;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0px 0px 10px rgba(255, 255, 255, 0.1);
+        }
+        .footer {
+            background-color: #343a40;
+            color: white;
+            text-align: center;
+            padding: 10px 0;
+            position: fixed;
+            bottom: 0;
+            width: 100%;
+        }
+        .navbar {
+            background-color: #1e1e1e;
+            padding: 15px 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .navbar a {
+            color: white;
+            text-decoration: none;
+            margin: 0 15px;
+            font-weight: bold;
+        }
+        .navbar a:hover {
+            color: #6410e3;
+        }
+        .contact-btn {
+            background-color: #a970ff;
+            border: none;
+            padding: 10px 15px;
+            border-radius: 5px;
+            color: white;
+            font-weight: bold;
+            text-decoration: none;
+        }
+        .contact-btn:hover {
+            background-color: #8b5cf6;
+        }
+    </style>
+</head>
+<body>
+
+<header class="navbar">
+    <h2 class="text-white">Handwritten Text Recognition</h2>
+    <nav>
+        <a href="/templates/Home.html">Home</a>
+        <a href="/templates/Task.html">Task</a>
+        <a href="#">Resume</a>
+        <a href="/templates/about.html">About</a>
+    </nav>
+    <a href="/templates/Contact.html" class="contact-btn">Contact Me</a>
+</header>
+
+<div class="container mt-5">
+    <h1 class="text-center">About Our Project</h1>
+    <p class="lead text-center">This web application extracts text from handwritten images using EasyOCR.</p>
+    <div class="row mt-4">
+        <div class="col-md-6">
+            <h3>Features</h3>
+            <ul class="list-group">
+                <li class="list-group-item">Handwritten text recognition using AI</li>
+                <li class="list-group-item">Supports multiple languages</li>
+                <li class="list-group-item">Export results as PDF</li>
+                <li class="list-group-item">User-friendly interface</li>
+            </ul>
+        </div>
+        <div class="col-md-6">
+            <h3>Technologies Used</h3>
+            <ul class="list-group">
+                <li class="list-group-item">Flask (Python)</li>
+                <li class="list-group-item">EasyOCR for text extraction</li>
+                <li class="list-group-item">Bootstrap for frontend</li>
+                <li class="list-group-item">JavaScript for interactivity</li>
+            </ul>
+        </div>
+    </div>
+</div>
+
+<footer class="footer">
+    <p>Handwritten Text Extractor &copy; 2025 | Developed with Flask & EasyOCR</p>
+</footer>
+
+</body>
+</html>

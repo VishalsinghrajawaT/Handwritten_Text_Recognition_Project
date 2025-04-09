@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Handwritten Text Recognition</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/css/bootstrap.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/js/all.min.js"></script>
+    <style>
+        body {
+            color: rgb(247, 244, 244);
+            background: url('/image/background.png') no-repeat center center/cover;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+        }
+        .container {
+            max-width: 600px;
+            background: #1e1e1e;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0px 0px 10px rgba(255, 255, 255, 0.1);
+        }
+        .footer {
+            background-color: #343a40;
+            color: white;
+            text-align: center;
+            padding: 10px 0;
+            position: fixed;
+            bottom: 0;
+            width: 100%;
+        }
+        .navbar {
+            background-color: #1e1e1e;
+            padding: 15px 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .navbar a {
+            color: white;
+            text-decoration: none;
+            margin: 0 15px;
+            font-weight: bold;
+        }
+        .navbar a:hover {
+            color: #6410e3;
+        }
+        .contact-btn {
+            background-color: #a970ff;
+            border: none;
+            padding: 10px 15px;
+            border-radius: 5px;
+            color: white;
+            font-weight: bold;
+            text-decoration: none;
+        }
+        .contact-btn:hover {
+            background-color: #8b5cf6;
+        }
+
+        /* Updated Welcome Text Styling */
+        .intro-text {
+            text-align: center;
+            margin: 50px 0;
+        }
+        .intro-text h1 {
+            font-size: 3rem;
+            font-weight: bold;
+            background: linear-gradient(to right, #ffffff, #a970ff);
+            -webkit-background-clip: text;
+            color: transparent;
+            text-shadow: 2px 2px 5px rgba(255, 255, 255, 0.2);
+            display: inline-block;
+        }
+    </style>
+</head>
+<body>
+
+<header class="navbar">
+    <h2 class="text-white">Handwritten Text Recognition</h2>
+    <nav>
+        <a href="/templates/Home.html">Home</a>
+        <a href="/templates/Task.html">Task</a>
+        <a href="#">Resume</a>
+        <a href="/templates/about.html">About</a>
+    </nav>
+    <a href="/templates/Contact.html" class="contact-btn">Contact Me</a>
+</header>
+
+<!-- Updated Welcome Section -->
+<div class="intro-text">
+    <h1>Welcome to <span>Handwritten Text Recognition Project</span></h1>
+</div>
+
+<main class="container my-5">
+    <h4 class="text-center mb-3">Upload an Image</h4>
+    <div class="text-center">
+        <input type="file" id="imageInput" class="form-control mb-3">
+        <button class="btn btn-success w-100" onclick="extractText()">Extract Text</button>
+    </div>
+    <div id="loading" style="display: none; text-align: center; font-size: 18px; margin-top: 10px;">
+        <i class="fas fa-spinner fa-spin"></i> Extracting text, please wait...
+    </div>
+    <div id="extractedText" class="mt-4 border p-3" style="display: none;"></div>
+    <button id="convertToPdf" class="btn btn-warning mt-3 w-100" style="display: none;" onclick="convertToPdf()">Convert to PDF</button>
+    <div id="pdfPreview" class="mt-4" style="display: none;">
+        <embed id="pdfEmbed" width="100%" height="400px" type="application/pdf">
+    </div>
+    <a id="downloadPdf" class="btn btn-primary mt-3 w-100" style="display: none;" download>Download PDF</a>
+</main>
+
+<footer class="footer">
+    <p>Handwritten Text Extractor &copy; 2025 | Developed with Flask & EasyOCR</p>
+</footer>
+
+<script>
+    function extractText() {
+        let fileInput = document.getElementById("imageInput").files[0];
+        if (!fileInput) {
+            alert("⚠️ Please upload an image first.");
+            return;
+        }
+        let formData = new FormData();
+        formData.append("image", fileInput);
+        document.getElementById("loading").style.display = "block";
+        document.getElementById("extractedText").style.display = "none";
+        fetch("http://localhost:5000/extract", {
+            method: "POST",
+            body: formData
+        })
+        .then(response => response.json())
+        .then(data => {
+            document.getElementById("loading").style.display = "none";
+            if (data.error) {
+                document.getElementById("extractedText").innerHTML = `<span class="text-danger">${data.error}</span>`;
+            } else {
+                document.getElementById("extractedText").innerText = data.text;
+                document.getElementById("extractedText").style.display = "block";
+                document.getElementById("convertToPdf").style.display = "block";
+            }
+        })
+        .catch(error => {
+            document.getElementById("loading").style.display = "none";
+            document.getElementById("extractedText").innerHTML = `<span class="text-danger">Error processing image.</span>`;
+            console.error("Error:", error);
+        });
+    }
+    function convertToPdf() {
+        fetch("http://localhost:5000/convert_pdf", {
+            method: "POST"
+        })
+        .then(response => response.json())
+        .then(data => {
+            if (data.error) {
+                alert("Error: " + data.error);
+                return;
+            }
+            let url = "http://localhost:5000" + data.pdf_url;
+            document.getElementById("pdfEmbed").src = url;
+            document.getElementById("pdfPreview").style.display = "block";
+            document.getElementById("downloadPdf").href = url;
+            document.getElementById("downloadPdf").style.display = "block";
+        });
+    }
+</script>
+
+</body>
+</html>
